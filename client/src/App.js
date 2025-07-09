@@ -13,9 +13,12 @@ function App(props) {
         </header>
       </div>
 
-      <div className="image_container">
-        <img src={theImage} />
-        <p>This is a beautiful image from the internet!</p>
+      <div className="App-image">
+        <h1>Welcome to my App!</h1>
+        <header className="cat-header">
+         <img src={theImage} className= "app-cat" alt="cat"/>
+         <p>This is a beautiful image from the internet!</p>
+        </header>
       </div>
     </>
   );
