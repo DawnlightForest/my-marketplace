@@ -13,10 +13,10 @@ code {
 }
 
 p {
-  color: red;
+  color: rgb(7, 112, 49);
   font-family: Arial;
   background: #fff3cd;
-  border: 2px solid #ffa502;
+  border: 2px solid #026525;
   border-radius: 8px;
   padding: 12px 20px;
   box-shadow: 0 4px 16px rgba(255, 165, 2, 0.2);
@@ -37,4 +37,14 @@ p {
     transform: scale(1) translateY(0);
     opacity: 1;
   }
+}
+
+h1 {
+  color: #146c1f;
+  font-family: Arial, sans-serif;
+  font-size: 3em;
+  margin: 0px 0;
+  background-color: bisque;
+  padding: 12px 20px;
+  border-radius: 8px;
 }
