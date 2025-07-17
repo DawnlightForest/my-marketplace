@@ -1,41 +1,77 @@
-import { useState, useEffect, } from 'react';
+import { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import theImage from './cat.avif'; 
-import theImage1 from './myCatImgs/1.jpg'; 
-import theImage2 from './myCatImgs/2.jpg'; 
-import theImage3 from './myCatImgs/3.jpg'; 
-import theImage4 from './myCatImgs/4.jpg'; 
-import theImage5 from './myCatImgs/5.jpg'; 
-import theImage6 from './myCatImgs/6.jpg'; 
-import theImage7 from './myCatImgs/7.jpg'; 
-import theImage8 from './myCatImgs/8.jpg'; 
-import theImage9 from './myCatImgs/9.jpg'; 
+import theImage from './cat.avif';
+import theImage1 from './myCatImgs/1.jpg';
+import theImage2 from './myCatImgs/2.jpg';
+import theImage3 from './myCatImgs/3.jpg';
+import theImage4 from './myCatImgs/4.jpg';
+import theImage5 from './myCatImgs/5.jpg';
+import theImage6 from './myCatImgs/6.jpg';
+import theImage7 from './myCatImgs/7.jpg';
+import theImage8 from './myCatImgs/8.jpg';
+import theImage9 from './myCatImgs/9.jpg';
 
-const Slideshow =({ imgs }) => {
-  const [index, setIndex] = useState();
+const Thumbnail = ({ arr, image, index }) => {
+  return (
+    <div className="thumbnail">
+      {arr.map((imgsrc, i) => (
+        <img
+          key={i}
+          height="50"
+          src={imgsrc}
+          onClick={() => image(i)}
+          className={index === i ? 'active' : ''}
+          alt={`thumbnail ${i + 1}`}
+        />
+      ))}
+    </div>
+  );
+};
 
+
+const Slideshow = ({ imgs }) => {
+  const [index, setIndex] = useState(0);
+
+  
   useEffect(() => {
     setIndex(0);
   }, []);
 
-const next = () => {
   
-}
+  const next = () => {
+    if (index === imgs.length - 1) {
+      setIndex(0); 
+    } else {
+      setIndex(index + 1);
+    }
+  };
 
-const prev = () => {}
+  
+  const prev = () => {
+    if (index === 0) {
+      setIndex(imgs.length - 1);
+    } else {
+      setIndex(index - 1);
+    }
+  }; 
 
-  return <div className="slideshow">
-    <img className="mainImg" src={imgs[index]} />
-    <div className="actions">
-      <button onClick={prev}></button>
-      <button onClick={next}></button>
+  
+  return (
+    <div className="slideshow">
+      {}
+      {imgs && imgs.length > 0 && <img className="mainImg" src={imgs[index]} alt="slideshow content" />}
+      <div className="actions">
+        <button onClick={prev}>PREV</button>
+        <button onClick={next}>NEXT</button>
+      </div>
+      <Thumbnail arr={imgs} image={setIndex} index={index} />
+    </div>
+  );
+};
 
-  </div>;
-}
 
-
-function App(props) {
+function App() {
   return (
     <>
       <div className="App">
@@ -48,29 +84,29 @@ function App(props) {
       <div className="App-image">
         <h1>Welcome to my website!</h1>
         <header className="cat-header">
-         <img src={theImage} className= "app-cat" alt="cat"/>
-         <p>This is a beautiful image from the internet!</p>
+          <img src={theImage} className="app-cat" alt="cat" />
+          <p>This is a beautiful image from the internet!</p>
         </header>
       </div>
 
-      <div  className="App-slideshow">
+      <div className="App-slideshow">
         <h1>Slideshow</h1>
-        <Slideshow 
+        <Slideshow
           imgs={[
-            <img src={theImage1} className= "mycat1" alt="cat1"/>,
-            <img src={theImage2} className= "mycat2" alt="cat2"/>,
-            <img src={theImage3} className= "mycat3" alt="cat3"/>,
-            <img src={theImage4} className= "mycat4" alt="cat4"/>,
-            <img src={theImage5} className= "mycat5" alt="cat5"/>,
-            <img src={theImage6} className= "mycat6" alt="cat6"/>,
-            <img src={theImage7} className= "mycat7" alt="cat7"/>,
-            <img src={theImage8} className= "mycat8" alt="cat8"/>,
-            <img src={theImage9} className= "mycat9" alt="cat9"/>
+            theImage1,
+            theImage2,
+            theImage3,
+            theImage4,
+            theImage5,
+            theImage6,
+            theImage7,
+            theImage8,
+            theImage9,
           ]}
-        />  
+        />
       </div>
     </>
   );
-}
+} 
 
 export default App;
